@@ -1,3 +1,5 @@
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 module.exports = {
   future: {
     removeDeprecatedGapUtilities: true,
@@ -5,7 +7,11 @@ module.exports = {
   },
   purge: ["./src/**/*.svelte", "./src/**/*.html"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        ibm: ["IBM Plex Mono", ...defaultTheme.fontFamily.mono],
+      },
+    },
   },
   variants: ["responsive", "hover", "focus", "group-hover", "disabled"],
   plugins: [],

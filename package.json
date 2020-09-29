@@ -13,6 +13,9 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^15.1.0",
     "@rollup/plugin-node-resolve": "^9.0.0",
+    "@rollup/plugin-typescript": "^6.0.0",
+    "@tsconfig/svelte": "^1.0.10",
+    "@types/clipboard": "^2.0.1",
     "autoprefixer": "^9.8.6",
     "concurrently": "^5.3.0",
     "cross-env": "^7.0.2",
@@ -22,13 +25,11 @@
     "rollup-plugin-svelte": "^6.0.1",
     "rollup-plugin-terser": "^7.0.2",
     "svelte": "^3.28.0",
-    "tailwindcss": "^1.8.10",
     "svelte-check": "^1.0.52",
     "svelte-preprocess": "^4.3.2",
-    "@rollup/plugin-typescript": "^6.0.0",
-    "typescript": "^4.0.3",
+    "tailwindcss": "^1.8.10",
     "tslib": "^2.0.1",
-    "@tsconfig/svelte": "^1.0.10"
+    "typescript": "^4.0.3"
   },
   "dependencies": {
     "clsx": "^1.1.1",
