@@ -9,6 +9,7 @@
   let key = "";
 
   let text = [];
+  let running = false;
 
   async function run() {
     if (!input || !key) return;
@@ -20,6 +21,7 @@
       return res;
     }, input);
     text = [...new Set(text)];
+    running = true;
   }
 </script>
 
@@ -43,13 +45,23 @@
               focus:outline-none focus:border-teal-500" />
       </label>
     </div>
-    <span
-      class="self-end mt-3 bg-teal-400 text-gray-900 py-1 px-3 rounded-lg flex 
-          justify-center items-center cursor-pointer hover:bg-teal-500 shadow-xl"
+    <button
+      disabled={running}
+      class={clsx(
+        'self-end mt-3 bg-teal-400 text-gray-900 py-1 px-3 rounded-lg flex disabled:opacity-25',
+        'justify-center items-center cursor-pointer shadow-xl disabled:cursor-default',
+        {
+          'hover:bg-teal-500': !running,
+        }
+      )}
       on:click={run}>
       {label}
-    </span>
+    </button>
   </div>
 
-  <Visualize {text} letterDuration={400} class="p-4" />
+  <Visualize
+    {text}
+    letterDuration={400}
+    class="p-4"
+    on:done={() => (running = false)} />
 </div>

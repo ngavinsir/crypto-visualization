@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { createEventDispatcher } from "svelte";
   import { fly } from "svelte/transition";
   import clsx from "clsx";
   import CopyClipBoard from "./Clipboard.svelte";
@@ -7,6 +8,8 @@
   export let gapDuration = 500;
   export let className = "";
   export { className as class };
+
+  const dispatch = createEventDispatcher();
 
   type VisualText = {
     text: string;
@@ -32,7 +35,10 @@
     if (text[step + 1]) {
       updateCurrentText((step = step + 1));
       if (!text[step + 1]) {
-        done = true;
+        setTimeout(() => {
+          done = true;
+          dispatch("done");
+        }, totalDuration + gapDuration);
       } else {
         timeout = setTimeout(update, totalDuration + gapDuration);
       }
