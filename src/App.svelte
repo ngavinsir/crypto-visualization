@@ -11,9 +11,9 @@
 </script>
 
 <div
-  class="flex flex-col w-full min-h-screen bg-gray-900 items-center justify-center">
+  class="flex flex-col w-full min-h-screen bg-gray-900 items-center justify-center p-2">
   <h1 class="text-pink-400 text-5xl mb-3 font-ibm font-medium">Crypto</h1>
-  <div class="flex py-2 space-x-3" style="width: 30rem">
+  <div class="flex py-2 space-x-3 max-w-full" style="width: 30rem">
     <span
       on:click={() => (selected = 'encrypt')}
       class={clsx('p-1 px-2 rounded-lg cursor-pointer', {
@@ -28,7 +28,7 @@
       })}>Decrypt</span>
   </div>
   <div
-    class="h-64 border-2 border-gray-600 rounded-lg p-4 flex flex-col"
+    class="h-64 border-2 border-gray-600 rounded-lg p-4 flex flex-col max-w-full"
     style="width: 30rem">
     <Function
       steps={selected === 'encrypt' ? encryptSteps : decryptSteps}

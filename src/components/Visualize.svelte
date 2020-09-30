@@ -106,7 +106,7 @@
   </div>
   <div class="flex h-8 mt-2 flex-wrap">
     {#each currentText as i}
-      <div class="relative flex items-center justify-start w-5 h-6">
+      <div class="relative flex items-center justify-center w-5 h-6">
         {#key i.text}
           <span
             in:inTransition={{ init: i.init }}
