@@ -15,6 +15,7 @@
       text.push(res);
       return res;
     }, input);
+    text = [...new Set(text)];
   }
 </script>
 
@@ -46,5 +47,5 @@
     </span>
   </div>
 
-  <Visualize {text} duration={800} transition={1500} class="p-4" />
+  <Visualize {text} gapDuration={800} letterDuration={500} class="p-4" />
 </div>

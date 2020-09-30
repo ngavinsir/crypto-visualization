@@ -3,8 +3,8 @@
   import clsx from "clsx";
   import CopyClipBoard from "./Clipboard.svelte";
   export let text: string[] = [];
-  export let duration = 1000;
-  export let transition = 1000;
+  export let letterDuration = 200;
+  export let gapDuration = 500;
   export let className = "";
   export { className as class };
 
@@ -13,9 +13,10 @@
     flag: boolean;
   };
 
-  let step = 0;
-  let interval: number | undefined = undefined;
+  let step = -1;
+  let timeout: number | undefined = undefined;
   let done = false;
+  let totalDuration = letterDuration;
   let currentText: VisualText[] = text.length
     ? text[0].split("").map((text) => ({ text, flag: true }))
     : [];
@@ -23,16 +24,19 @@
   $: if (text.length) {
     reset();
   }
-  $: if (text.length && !interval) {
-    interval = setInterval(() => {
-      if (text[step + 1]) {
-        updateCurrentText((step = step + 1));
-        if (!text[step + 1]) {
-          clearInterval(interval);
-          done = true;
-        }
+  $: if (text.length && !timeout) {
+    update();
+  }
+
+  function update() {
+    if (text[step + 1]) {
+      updateCurrentText((step = step + 1));
+      if (!text[step + 1]) {
+        done = true;
+      } else {
+        timeout = setTimeout(update, totalDuration + gapDuration);
       }
-    }, transition);
+    }
   }
 
   function updateCurrentText(step: number) {
@@ -57,16 +61,17 @@
     } else {
       currentText.splice(text[step].length);
     }
+    totalDuration = letterDuration * currentText.length;
   }
 
   function reset() {
     done = false;
-    step = 0;
+    step = -1;
     currentText =
       typeof text === "string"
         ? [{ text, flag: true }]
         : text[0].split("").map((text) => ({ text, flag: true }));
-    interval = undefined;
+    timeout = undefined;
   }
 </script>
 
@@ -96,12 +101,12 @@
       <path d="M5 3a2 2 0 00-2 2v6a2 2 0 002 2V5h8a2 2 0 00-2-2H5z" /></svg>
   </div>
   <div class="flex h-8 mt-2 flex-wrap">
-    {#each currentText as i}
+    {#each currentText as i, index}
       <div class="relative flex items-center justify-center w-5 h-6">
         {#key i.text}
           <span
-            in:fly={{ y: 30, duration }}
-            out:fly={{ y: -30, duration: duration }}
+            in:fly={{ y: 30, duration: letterDuration, delay: (index / currentText.length) * totalDuration }}
+            out:fly={{ y: -30, duration: letterDuration, delay: (index / currentText.length) * totalDuration }}
             class={clsx('absolute font-bold text-2xl', {
               'text-orange-400': i.flag,
               'text-pink-400': !i.flag,
