@@ -30,6 +30,8 @@
   <div
     class="h-64 border-2 border-gray-600 rounded-lg p-4 flex flex-col"
     style="width: 30rem">
-    <Function steps={selected === 'encrypt' ? encryptSteps : decryptSteps} />
+    <Function
+      steps={selected === 'encrypt' ? encryptSteps : decryptSteps}
+      label={selected === 'encrypt' ? 'encrypt' : 'decrypt'} />
   </div>
 </div>

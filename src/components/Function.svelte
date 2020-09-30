@@ -1,6 +1,7 @@
 <script lang="ts">
   import Visualize from "./Visualize.svelte";
   export let steps: ((p: string, k: string) => string)[] = [];
+  export let label = "";
   let input = "";
   let key = "";
 
@@ -40,7 +41,7 @@
     class="self-end mt-3 bg-teal-400 text-gray-900 py-1 px-3 rounded-lg flex 
         justify-center items-center cursor-pointer hover:bg-teal-500 shadow-xl"
     on:click={run}>
-    encrypt
+    {label}
   </span>
   <Visualize {text} duration={800} transition={1500} class="mt-8" />
 </div>
