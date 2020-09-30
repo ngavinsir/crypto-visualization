@@ -11,7 +11,7 @@
 </script>
 
 <div
-  class="flex flex-col w-full min-h-screen bg-gray-900 items-center justify-center p-2">
+  class="flex flex-col w-full min-h-screen bg-gray-900 items-center p-2 pt-16">
   <h1 class="text-pink-400 text-5xl mb-3 font-ibm font-medium">Crypto</h1>
   <div class="flex py-2 space-x-3 max-w-full" style="width: 30rem">
     <span
@@ -27,9 +27,7 @@
         'text-gray-400': selected !== 'decrypt',
       })}>Decrypt</span>
   </div>
-  <div
-    class="h-64 border-2 border-gray-600 rounded-lg p-4 flex flex-col max-w-full"
-    style="width: 30rem">
+  <div class="max-w-full" style="width: 30rem">
     <Function
       steps={selected === 'encrypt' ? encryptSteps : decryptSteps}
       label={selected === 'encrypt' ? 'encrypt' : 'decrypt'} />

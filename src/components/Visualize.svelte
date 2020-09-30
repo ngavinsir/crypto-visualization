@@ -16,7 +16,6 @@
   let step = 0;
   let interval: number | undefined = undefined;
   let done = false;
-  let textarea;
   let currentText: VisualText[] = text.length
     ? text[0].split("").map((text) => ({ text, flag: true }))
     : [];
