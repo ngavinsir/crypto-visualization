@@ -1,11 +1,23 @@
 <script lang="ts">
   import Function from "./components/Function.svelte";
   import clsx from "clsx";
-  import { CC1, CTC, CC2, CC3 } from "./lib/encrypt";
-  import { DCC1, DCTC, DCC2, DCC3 } from "./lib/decrypt";
+  import {
+    preprocessing as encryptPre,
+    CC1,
+    CTC,
+    CC2,
+    CC3,
+  } from "./lib/encrypt";
+  import {
+    preprocessing as decryptPre,
+    DCC1,
+    DCTC,
+    DCC2,
+    DCC3,
+  } from "./lib/decrypt";
 
-  const encryptSteps = [CC1, CTC, CC2, CC3];
-  const decryptSteps = [DCC3, DCC2, DCTC, DCC1];
+  const encryptSteps = [encryptPre, CC1, CTC, CC2, CC3];
+  const decryptSteps = [decryptPre, DCC3, DCC2, DCTC, DCC1];
 
   let selected = "encrypt";
 </script>
@@ -29,7 +41,18 @@
   </div>
   <div class="max-w-full" style="width: 30rem">
     <Function
-      steps={selected === 'encrypt' ? encryptSteps : decryptSteps}
-      label={selected === 'encrypt' ? 'encrypt' : 'decrypt'} />
+      steps={encryptSteps}
+      label="encrypt"
+      class={clsx({
+        hidden: selected !== 'encrypt',
+        flex: selected === 'encrypt',
+      })} />
+    <Function
+      steps={decryptSteps}
+      label="decrypt"
+      class={clsx({
+        hidden: selected !== 'decrypt',
+        flex: selected === 'decrypt',
+      })} />
   </div>
 </div>

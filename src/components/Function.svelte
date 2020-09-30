@@ -1,7 +1,10 @@
 <script lang="ts">
+  import clsx from "clsx";
   import Visualize from "./Visualize.svelte";
   export let steps: ((p: string, k: string) => string)[] = [];
   export let label = "";
+  export let className = "";
+  export { className as class };
   let input = "";
   let key = "";
 
@@ -10,6 +13,7 @@
   async function run() {
     if (!input || !key) return;
     text = [input];
+    key = key.toLowerCase();
     steps.reduce((prev, cur) => {
       const res = cur(prev, key);
       text.push(res);
@@ -19,7 +23,7 @@
   }
 </script>
 
-<div class="flex flex-col w-full space-y-4">
+<div class={clsx(className, 'flex flex-col w-full space-y-4')}>
   <div class="flex flex-col border-2 border-gray-600 rounded-lg p-4">
     <div class="flex text-teal-400">
       <label class="flex flex-col w-1/2 pr-2">
@@ -47,5 +51,5 @@
     </span>
   </div>
 
-  <Visualize {text} gapDuration={800} letterDuration={500} class="p-4" />
+  <Visualize {text} letterDuration={400} class="p-4" />
 </div>

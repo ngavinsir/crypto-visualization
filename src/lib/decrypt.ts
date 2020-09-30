@@ -1,3 +1,7 @@
+export function preprocessing(C: string, _key: string): string {
+  return C.toLowerCase();
+}
+
 // Caesar Cipher 1
 export function DCC1(C: string, key: string): string {
   const K1 = key.length;
@@ -54,7 +58,7 @@ export function DCTC(C: string, key: string): string {
 
 // Caesar Cipher 2
 export function DCC2(C: string, key: string): string {
-  const K2 = key.charCodeAt(0) - "A".charCodeAt(0);
+  const K2 = key.charCodeAt(0) - "a".charCodeAt(0);
   let tmp = "";
   for (let i = 0; i < C.length; i++) {
     if (
@@ -73,7 +77,7 @@ export function DCC2(C: string, key: string): string {
 // Caesar Cipher 3
 export function DCC3(C: string, key: string): string {
   C = C.toLowerCase();
-  const K3 = key.charCodeAt(key.length - 1) - "A".charCodeAt(0);
+  const K3 = key.charCodeAt(key.length - 1) - "a".charCodeAt(0);
   let tmp = "";
   for (let i = 0; i < C.length; i++) {
     if (

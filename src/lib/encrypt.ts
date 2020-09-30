@@ -1,7 +1,10 @@
+export function preprocessing(p: string, key: string): string {
+  p = p.toLowerCase();
+  return addPaddings(p, key);
+}
+
 // Caesar Cipher 1;
 export function CC1(p: string, key: string): string {
-  p = p.toLowerCase();
-  p = addPaddings(p, key);
   const K1 = key.length;
   const C = [];
   for (let i = 0; i < p.length; i++) {
@@ -59,7 +62,7 @@ export function CTC(C: string, key: string): string {
 
 // Caesar Cipher 2
 export function CC2(C: string, key: string): string {
-  const K2 = key.charCodeAt(0) - "A".charCodeAt(0);
+  const K2 = key.charCodeAt(0) - "a".charCodeAt(0);
   let tmp = "";
   for (let i = 0; i < C.length; i++) {
     if (
@@ -78,7 +81,7 @@ export function CC2(C: string, key: string): string {
 
 // Caesar Cipher 3
 export function CC3(C: string, key: string): string {
-  const K3 = key.charCodeAt(key.length - 1) - "A".charCodeAt(0);
+  const K3 = key.charCodeAt(key.length - 1) - "a".charCodeAt(0);
   let tmp = "";
   for (let i = 0; i < C.length; i++) {
     if (
